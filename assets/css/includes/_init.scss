@@ -1,6 +1,9 @@
 @use 'sass:list';
 @use 'sass:string';
 @use 'sass:map';
+
+@use 'wordpress-header';
+
 @use 'conf' as *;
 @use 'fonts';
 
