@@ -4329,6 +4329,7 @@ ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  max-width: 400px;
 }
 .searchform input {
   -webkit-appearance: none;
@@ -5382,6 +5383,20 @@ body.index-php .error-content {
 }
 .archive-wrapper[data-num="6"] {
   grid-template: repeat(6, 1fr)/1fr;
+}
+@media (min-width: 768px) {
+  .archive-wrapper {
+    grid-gap: 48px 56px;
+  }
+  .archive-wrapper[data-num="1"], .archive-wrapper[data-num="2"] {
+    grid-template: repeat(1, 1fr)/repeat(2, 1fr);
+  }
+  .archive-wrapper[data-num="3"], .archive-wrapper[data-num="4"] {
+    grid-template: repeat(2, 1fr)/repeat(2, 1fr);
+  }
+  .archive-wrapper[data-num="5"], .archive-wrapper[data-num="6"] {
+    grid-template: repeat(3, 1fr)/repeat(2, 1fr);
+  }
 }
 
 .archive main .searchform,

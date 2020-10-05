@@ -317,6 +317,7 @@ ul {
 
 .searchform {
     display: flex;
+    max-width: s(50);
 
     input {
         -webkit-appearance: none;

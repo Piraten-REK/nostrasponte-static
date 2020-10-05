@@ -7,6 +7,17 @@
             grid-template: repeat(#{$i}, 1fr) / 1fr;
         }
     }
+
+    @include m(1) {
+        grid-gap: s(6) s(7);
+
+        @for $i from 1 through 3 {
+            &[data-num="#{$i * 2 - 1}"],
+            &[data-num="#{$i * 2}"] {
+                grid-template: repeat(#{$i}, 1fr) / repeat(2, 1fr);
+            }
+        }
+    }
 }
 
 .archive,
