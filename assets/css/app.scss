@@ -354,6 +354,40 @@ ul {
     }
 }
 
+.post-grid {
+    display: grid;
+    grid-gap: s(3);
+    
+    @for $i from 1 through 6 {
+        &[data-num="#{$i}"] {
+            grid-template: repeat(#{$i}, 1fr) / 1fr;
+        }
+    }
+
+    @include m(1) {
+        grid-gap: s(6) s(7);
+
+        @for $i from 1 through 3 {
+            &[data-num="#{$i * 2 - 1}"],
+            &[data-num="#{$i * 2}"] {
+                grid-template: repeat(#{$i}, 1fr) / repeat(2, 1fr);
+            }
+        }
+    }
+
+    @include m(2) {
+        grid-gap: s(3);
+
+        @for $i from 1 through 2 {
+            &[data-num="#{$i * 3 - 2}"],
+            &[data-num="#{$i * 3 - 1}"],
+            &[data-num="#{$i * 3}"] {
+                grid-template: repeat(#{$i}, 1fr) / repeat(3, 1fr);
+            }
+        }
+    }
+}
+
 .pagination {
     display: inline-flex;
     background: #fff;
@@ -391,7 +425,6 @@ ul {
         }
 
         @include hover {
-            // color: $tertiary;
             color: $primary;
         }
     }

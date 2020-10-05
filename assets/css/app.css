@@ -4359,6 +4359,54 @@ ul {
   border-radius: 0 4px 4px 0;
   cursor: pointer;
 }
+.post-grid {
+  display: grid;
+  grid-gap: 24px;
+}
+.post-grid[data-num="1"] {
+  grid-template: repeat(1, 1fr)/1fr;
+}
+.post-grid[data-num="2"] {
+  grid-template: repeat(2, 1fr)/1fr;
+}
+.post-grid[data-num="3"] {
+  grid-template: repeat(3, 1fr)/1fr;
+}
+.post-grid[data-num="4"] {
+  grid-template: repeat(4, 1fr)/1fr;
+}
+.post-grid[data-num="5"] {
+  grid-template: repeat(5, 1fr)/1fr;
+}
+.post-grid[data-num="6"] {
+  grid-template: repeat(6, 1fr)/1fr;
+}
+@media (min-width: 768px) {
+  .post-grid {
+    grid-gap: 48px 56px;
+  }
+  .post-grid[data-num="1"], .post-grid[data-num="2"] {
+    grid-template: repeat(1, 1fr)/repeat(2, 1fr);
+  }
+  .post-grid[data-num="3"], .post-grid[data-num="4"] {
+    grid-template: repeat(2, 1fr)/repeat(2, 1fr);
+  }
+  .post-grid[data-num="5"], .post-grid[data-num="6"] {
+    grid-template: repeat(3, 1fr)/repeat(2, 1fr);
+  }
+}
+@media (min-width: 1366px) {
+  .post-grid {
+    grid-gap: 24px;
+  }
+  .post-grid[data-num="1"], .post-grid[data-num="2"], .post-grid[data-num="3"] {
+    grid-template: repeat(1, 1fr)/repeat(3, 1fr);
+  }
+  .post-grid[data-num="4"], .post-grid[data-num="5"], .post-grid[data-num="6"] {
+    grid-template: repeat(2, 1fr)/repeat(3, 1fr);
+  }
+}
+
 .pagination {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -5367,43 +5415,6 @@ body.error404 .error-content h1.error-content__title, body.index-php .error-cont
 
 body.index-php .error-content {
   background-image: url("/assets/img/501.svg");
-}
-
-.archive-wrapper {
-  display: grid;
-  grid-gap: 24px;
-}
-.archive-wrapper[data-num="1"] {
-  grid-template: repeat(1, 1fr)/1fr;
-}
-.archive-wrapper[data-num="2"] {
-  grid-template: repeat(2, 1fr)/1fr;
-}
-.archive-wrapper[data-num="3"] {
-  grid-template: repeat(3, 1fr)/1fr;
-}
-.archive-wrapper[data-num="4"] {
-  grid-template: repeat(4, 1fr)/1fr;
-}
-.archive-wrapper[data-num="5"] {
-  grid-template: repeat(5, 1fr)/1fr;
-}
-.archive-wrapper[data-num="6"] {
-  grid-template: repeat(6, 1fr)/1fr;
-}
-@media (min-width: 768px) {
-  .archive-wrapper {
-    grid-gap: 48px 56px;
-  }
-  .archive-wrapper[data-num="1"], .archive-wrapper[data-num="2"] {
-    grid-template: repeat(1, 1fr)/repeat(2, 1fr);
-  }
-  .archive-wrapper[data-num="3"], .archive-wrapper[data-num="4"] {
-    grid-template: repeat(2, 1fr)/repeat(2, 1fr);
-  }
-  .archive-wrapper[data-num="5"], .archive-wrapper[data-num="6"] {
-    grid-template: repeat(3, 1fr)/repeat(2, 1fr);
-  }
 }
 
 .archive main .searchform,
