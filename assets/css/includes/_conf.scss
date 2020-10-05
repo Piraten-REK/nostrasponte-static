@@ -1,0 +1,78 @@
+@use 'sass:list';
+
+// Colors
+$dark: #2d3436;
+$orange: #ff8700;
+$lightOrange: #ffaf40;
+$fresh: #8FBD1F;
+$green: #1EA12D;
+$purple: #5666A4;
+$blue: #4CBCD0;
+$piratePurple: #652480;
+$wallpaper: #fafafa;
+$lightGray: #ccc;
+$gray: #999;
+$darkGray: #777;
+
+$text: $dark;
+$primary: $orange;
+$secondary: $lightOrange;
+$tertiary: $piratePurple;
+
+// Typography
+$fontSize: 16px;
+$fontFamily: "DejaRip", sans-serif;
+$fontAccent: "PoliticsHead", "DejaRip", sans-serif;
+
+// Responsiveness
+$breakPoints: (768px, 1366px);
+$maxWidth: 1400px;
+
+// Helpers
+@function base64($str) {
+    @return url('data:image/svg+xml;base64,#{$str}');
+}
+
+@function s($mod: 2, $base: 8px) {
+    @return $mod * $base;
+}
+
+@mixin disableDefaults() {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+@mixin hover() {
+    &:hover, &:active, &:focus {
+        @content;
+    }
+}
+
+@mixin m($n) {
+    @media (min-width: list.nth($breakPoints, $n)) {
+        @content;
+    }
+}
+
+@mixin link() {
+    &, &:link, &:visited {
+        @content;
+    }
+}
+
+@mixin links($hover: false) {
+    a {
+        @if not $hover {
+            @include link {
+                @content;
+            }
+        } @else {
+            @include hover {
+                @content;
+            }
+        }
+    }
+}

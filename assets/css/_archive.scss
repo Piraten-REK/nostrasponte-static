@@ -1,0 +1,17 @@
+.archive-wrapper {
+    display: grid;
+    grid-gap: s(3);
+    
+    @for $i from 1 through 6 {
+        &[data-num="#{$i}"] {
+            grid-template: repeat(#{$i}, 1fr) / 1fr;
+        }
+    }
+}
+
+.archive,
+.search {
+    main .searchform {
+        width: 100%;
+    }
+}

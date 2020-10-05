@@ -1,0 +1,22 @@
+@use './includes/conf' as *;
+
+body.error404 {
+    .error-content {
+        background: url('/assets/img/404.svg') center center / calc(100% - 10vw) auto no-repeat;
+
+        h1.error-content__title {
+            font-size: s(4);
+
+            @include m(1) {
+                font-size: s(6);
+            }
+        }
+
+        .error-content__text {
+            @include m(1) {
+                font-size: s(3);
+            }
+        }
+
+    }
+}

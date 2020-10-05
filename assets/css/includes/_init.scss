@@ -1,0 +1,107 @@
+@use 'sass:list';
+@use 'sass:string';
+@use 'sass:map';
+@use 'conf' as *;
+@use 'fonts';
+
+@import 'icons';
+
+@mixin -spacerClasses($classMod: null) {
+    @each $c, $parameter in ('m': 'margin', 'p': 'padding') {
+        $mods: ();
+        @for $i from 0 through 18 {
+            $mods: list.append($mods, $i);
+        }
+        @each $mod in list.append($mods, auto) {
+            $classEnd: $mod;
+            $px: null;
+            @if $mod == auto { $px: auto; } @else { $px: 8px * $mod; }
+            @if $classMod != null { $classEnd: $classMod + '-' + $mod; }
+            .#{$c}t-#{$classEnd} {
+                #{string.unquote($parameter)}-top: $px;
+            }
+            .#{$c}b-#{$classEnd} {
+                #{string.unquote($parameter)}-bottom: $px;
+            }
+            .#{$c}r-#{$classEnd} {
+                #{string.unquote($parameter)}-right: $px;
+            }
+            .#{$c}l-#{$classEnd} {
+                #{string.unquote($parameter)}-left: $px;
+            }
+            .#{$c}y-#{$classEnd} {
+                @extend .#{$c}t-#{$classEnd};
+                @extend .#{$c}b-#{$classEnd};
+            }
+            .#{$c}x-#{$classEnd} {
+                @extend .#{$c}l-#{$classEnd};
+                @extend .#{$c}r-#{$classEnd};
+            }
+        }
+    }   
+}
+
+@mixin -selection() {
+    background-color: $piratePurple;
+    color: #fff;
+}
+
+:root {
+    font: normal normal 400 $fontSize / #{string.unquote("1.3")} $fontFamily;
+    color: $dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+::-moz-selection {
+    @include -selection;
+}
+::selection {
+    @include -selection;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../img/anchors.svg') top left / auto s(9) repeat fixed $wallpaper;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+@include -spacerClasses;
+@media (max-width: #{list.nth($breakPoints, 1) - 1px}) {
+    @include -spacerClasses('sm');
+}
+@media (min-width: #{list.nth($breakPoints, 1)}) {
+    @include -spacerClasses('md');
+}
+@media (min-width: #{list.nth($breakPoints, 2)}) {
+    @include -spacerClasses('lg');
+}
+
+$dir_lookup: ('fl-left': flex-start, 'fl-center': center, 'fl-right': flex-end);
+@each $dir in left, center, right, fl-left, fl-center, fl-right {
+    @each $size, $breakPoint in ('sm': 'max-width: #{list.nth($breakPoints, 1) - 1px}', 'md': 'min-width: #{list.nth($breakPoints, 1)}', 'lg': 'min-width: #{list.nth($breakPoints, 2)}') {
+        .#{$dir} {
+            @if string.slice($dir, 1, 3) == 'fl-' {
+                display: flex;
+                justify-content: map.get($dir_lookup, $dir);
+            } @else {
+                text-align: $dir;
+            }
+        }
+        @media (string.unquote($breakPoint)) {
+            .#{$size}-#{$dir} {
+                @if string.slice($dir, 1, 3) == 'fl-' {
+                    display: flex;
+                    justify-content: map.get($dir_lookup, $dir);
+                } @else {
+                    text-align: $dir;
+                }
+            }
+        }
+    }
+}

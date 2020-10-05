@@ -1,0 +1,23 @@
+@use 'sass:list';
+@use '../includes/conf' as *;
+
+.site-sidebar {
+    background: #f2f2f2;
+    position: relative;
+
+    @media (min-width: #{list.nth($breakPoints, 1)}) and (max-width: #{list.nth($breakPoints, 2) - 1px}) {
+        display: grid;
+        grid-template: auto / 1fr 1fr;
+        grid-gap: s(4);
+    }
+
+    .section-title {
+        @include m(2) {
+            font-size: s(3.5);
+        }
+    }
+
+    @import './social';
+
+    @import './em-calendar';
+}

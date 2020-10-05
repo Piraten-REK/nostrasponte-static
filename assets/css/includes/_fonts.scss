@@ -1,0 +1,47 @@
+@use 'sass:string';
+
+$formats: (
+    'otf': 'opentype',
+    'eot': 'embedded-opentype',
+    'woff': 'woff',
+    'ttf': 'truetype',
+    'woff2': 'woff2'
+);
+
+$fontsDir: '/assets/fonts/';
+
+@function -srcString($fontName, $style, $weight) {
+    $name: $fontName;
+    @if $style == 'italic' or $weight == 700 {
+        $name: $name + '-';
+    }
+    @if $weight == 700 {
+        $name: $name + 'Bold';
+    }
+    @if $style == 'italic' {
+        $name: $name + 'Italic';
+    }
+    $res: 'local(\'#{$name}\'),';
+    @each $ext, $format in $formats {
+        $res: $res + 'url(\'#{$fontsDir}#{$name}.#{$ext}\') format(\'#{$format}\'),'
+    }
+    @return string.unquote(string.slice($res, 1, -2));
+}
+
+@each $style in ('normal', 'italic') {
+    @each $weight in (400, 700) {
+        @font-face {
+            font-family: "DejaRip";
+            font-style: string.unquote($style);
+            font-weight: $weight;
+            src: -srcString('DejaRip', $style, $weight);
+        }
+    }
+}
+
+@font-face {
+    font-family: "PoliticsHead";
+    font-style: normal;
+    font-weight: 700;
+    src: -srcString('PoliticsHead', normal, 400);
+}

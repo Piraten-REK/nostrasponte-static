@@ -1,0 +1,135 @@
+@use 'includes/conf' as *;
+
+.site-footer {
+    background: $dark;
+    color: #fff;
+
+    @include m(1) {
+        display: grid;
+        grid-template:
+            "social links" auto
+            "line line" auto
+            "copyright copyright" auto
+            / 1fr 1fr;
+        grid-gap: s(4);
+    }
+
+    @include m(2) {  
+        grid-template: "social links copyright" auto / 1fr 1fr 1fr;
+    }
+
+    a:not(.site-footer__license__link) {
+        color: #fff;
+    }
+
+    & &__social {
+        grid-area: social;
+    }
+
+    & &__links {
+        grid-area: links;
+    }
+
+    &> hr {
+        grid-area: line;
+
+        @include m(2) {
+            display: none;
+        }
+    }
+
+    & &__license {
+        grid-area: copyright;
+    }
+
+    & &__license__copy {
+        display: grid;
+        grid-template: repeat(2, auto) / auto auto;
+        justify-content: start;
+
+        @include m(1) {
+            display: block;
+        }
+
+        &> span:nth-child(1) {
+            grid-area: 1 / 1 / 2 / 2;
+            margin-right: .3em;
+        }
+        &> span:nth-child(2) {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+        &> span:nth-child(3) {
+            grid-area: 2 / 2 / 3 / 3;
+        }
+    }
+
+    h2 {
+        @include m(2) {
+            font-size: s(4);
+        }
+    }
+}
+
+.back-to-top {
+    position: fixed;
+    right: 8vmin;
+    bottom: 8vmin;
+    width: 16vmin;
+    height: 16vmin;
+    border-radius: 50%;
+    box-shadow: 0 2px 3px rgba(0,0,0,.3);
+    background-color: $primary;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transform: scale(0);
+    pointer-events: none;
+    transition: all .2s ease-in-out;
+    animation: none;
+
+    @media (min-width: 440px or (min-height: 440px)) {
+        right: 35px;
+        bottom: 35px;
+        width: 70px;
+        height: 70px;
+    }
+
+    &.back-to-top__visible {
+        transform: none;
+        pointer-events: initial;
+
+        @include hover {
+            background-color: $secondary;
+        }
+        &:hover, &:focus {
+            animation: btt 2s linear 0s infinite;
+        }
+    }
+
+    .feather {
+        color: #fff;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        font-size: 12.8vmin;
+        line-height: 16vmin;
+        text-align: center;
+
+        @media (min-width: 440px or (min-height: 440px)) {
+            font-size: 56px;
+            line-height: 70px;
+        }
+    }
+}
+
+@keyframes btt {
+    5%, 15% {
+        transform: translateY(s(-1));
+    }
+    0%, 10%, 20%, 100% {
+        transform: translateY(0);
+    }
+}

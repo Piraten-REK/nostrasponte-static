@@ -1,0 +1,381 @@
+@use 'includes/conf' as *;
+
+.site-header {
+    width: 100%;
+    height: s(6);
+    background: #fff;
+    filter: drop-shadow(0 2px 3px #00000028);
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    
+    @include m(1) {
+        position: relative;
+        filter: none;
+        height: s(10);
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid $lightGray;
+    }
+
+    @include m(2) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+
+    &__menu-button {
+        @include disableDefaults;
+        position: relative;
+        width: s(4);
+        height: s(4);
+        cursor: pointer;
+
+        @include m(1) {
+            margin: 12px 0 16px;
+        }
+
+        @include m(2) {
+            display: none;
+        }
+
+        &__bar {
+            display: block;
+            position: absolute;
+            width: s(4);
+            height: s(.5);
+            background: $dark;
+            border-radius: s(.25);
+            transition: all .3s ease-in-out;
+
+            &:nth-child(1) {
+                top: s(.5);
+                left: 0;
+            }
+            &:nth-child(2) {
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                width: s(3)
+            }
+            &:nth-child(3) {
+                bottom: s(.5);
+                left: 0;
+                width: s(2);
+            }
+        }
+
+        &--open {
+            .site-header__menu-button__bar {
+                &:nth-child(1) {
+                    transform: rotate(45deg);
+                    top: 14px;
+                }
+
+                &:nth-child(3) {
+                    transform: rotate(-45deg);
+                    width: s(4);
+                    bottom: 14px;
+                }
+
+                &:nth-child(2) {
+                   background: transparent;
+                }
+            }
+
+            &+ .site-header__navigation {
+                transform: none;
+                transition-timing-function: ease-out;
+                pointer-events: initial;
+            }
+        }
+    }
+
+    &__logo__img {
+        width: s(7);
+        height: s(7);
+        position: absolute;
+        top: s(1);
+        left: 50%;
+        z-index: 2;
+        transform: translateX(-50%);
+        clip-path: circle(100% at 0 50%);
+        object-fit: cover;
+        object-position: 0px center;
+
+        @include m(1) {
+            width: auto;
+            height: s(8);
+            clip-path: none;
+            top: s(.5);
+        }
+
+        @include m(2) {
+            position: static;
+            transform: none;
+        }
+    }
+
+    &__navigation {
+        position: absolute;
+        height: calc(100vh - #{s(6)});
+        overflow-y: scroll;
+        top: s(6);
+        left: 0;
+        box-shadow: 2px 0 3px rgba(0, 0, 0, .3);
+        width: 80%;
+        max-width: 300px;
+        background: $dark;
+        transform: translateX(calc(-100% - 6px));
+        pointer-events: none;
+        transition: transform .3s ease-in;
+
+        &> ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            &> li {
+                &:not(:last-child) {
+                    margin-bottom: s(1.5);
+                }
+
+                &.site-header__navigation__search {
+                    margin-bottom: s(3);
+
+                    &::before {
+                        @extend .feather;
+                        @extend .icon-search;
+                        display: none;
+                    }
+                }
+
+                &> * {
+                    font-size: s(2.5);
+                }
+
+                a {
+                    color: #fff;
+                }
+                .site-header__navigation__label {
+                    color: #fff;
+                    display: block;
+                    width: 100%;
+
+                    &::after {
+                        @extend .feather;
+                    }
+
+                    @supports (position: sticky) {
+                        position: sticky;
+                        top: -18px;
+                        z-index: 1;
+                        background: $dark;
+                        box-shadow: 0 6px 6px $dark, 0 -14px 0 $dark;
+                    }
+
+                    &+ ul {
+                        padding: 0;
+                        margin: s(.75) s(2) 0;
+                        list-style: none;
+                        
+                        &> li {
+                            font-size: s(2);
+
+                            &:not(:last-child) {
+                                margin-bottom: s(1);
+                            }
+
+                            &.site-header__navigation__separator {
+                                display: block;
+
+                                hr {
+                                    margin: s(1.5) 0;
+                                    border-color: $gray;
+                                    position: relative;
+                                    overflow: visible;
+                                    
+                                    &::before {
+                                        content: "";
+                                        display: block;
+                                        width: s(3);
+                                        height: s(2);
+                                        background: url('/assets/img/singet.svg') center center / contain no-repeat $dark;
+                                        border: none;
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%);
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @include m(1) {
+            top: s(10);
+            height: calc(100vh - #{s(10)});
+
+            &> ul {
+                &> li {
+                    &:not(:last-child) {
+                        margin-bottom: s(2);
+                    }
+
+                    &.site-header__navigation__search {
+                        margin-bottom: s(4);
+                    }
+    
+                    &> * {
+                        font-size: s(3);
+                    }
+
+                    .site-header__navigation__label {    
+                        &+ ul {
+                            margin: s(1) s(3) 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        @include m(2) {
+            position: relative;
+            top: 0;
+            height: s(10);
+            box-shadow: none;
+            width: auto;
+            max-width: unset;
+            background: none;
+            transform: none;
+            pointer-events: initial;
+            transition: none;
+            padding: 0;
+            overflow: visible;
+
+            &> ul {
+                height: s(10);
+                display: flex;
+
+                &> li.site-header__navigation__item {
+                    margin: 0 s(-1.5) 0 0;
+                    display: inline-block;
+                    height: 100%;
+                    padding: 0 s(1.5);
+                    cursor: default;
+                    transition: border .2s linear;
+                    margin: 0;
+                    position: relative;
+
+                    &.site-header__navigation__item--open,
+                    &:hover, &:focus, &:active, &:focus-within {
+                        border-bottom: 4px solid $orange;
+                        transition: none;
+
+                        &> ul {
+                            opacity: 1;
+                            pointer-events: initial;
+                        }
+
+                        &.site-header__navigation__search form {
+                            opacity: 1;
+                            pointer-events: all;
+                        }
+                    }
+
+                    &.site-header__navigation__search {
+                        order: 9999;
+
+                        &::before {
+                            display: block;
+                            line-height: s(10);
+                            font-size: s(3);
+                            transition: color .3s linear;
+                        }
+
+                        form {
+                            display: flex;
+                            position: absolute;
+                            background: #fff;
+                            right: 0;
+                            width: 300px;
+                            padding: s(2);
+                            margin: 0;
+                            box-shadow: 0px 3px 3px rgba(#000,.5);
+                            opacity: 0;
+                            pointer-events: none;
+                            transition: opacity .2s linear;
+                        }
+                    }
+
+                    &> a, &> .site-header__navigation__label {
+                        line-height: s(10);
+                        background: none;
+                        box-shadow: none;
+                        font-size: s(3);
+                        color: $dark;
+                        text-transform: uppercase;
+                        transition: color .3s linear;
+                    }
+                    &> .site-header__navigation__label::after {
+                        content: "\e842";
+                    }
+
+                    &> ul {
+                        display: flex;
+                        flex-direction: column;
+                        position: absolute;
+                        left: 0;
+                        background: #fff;
+                        box-shadow: 0px 3px 3px rgba(#000,.5), 0 -4px 0 $orange;
+                        margin: 0;
+                        min-width: 100%;
+                        max-width: calc(100% + #{s(6)});
+                        padding: s(1) 0;
+                        transition: opacity .2s linear;
+                        opacity: 0;
+                        pointer-events: none;
+                        
+                        &> li {
+                            font-size: s(2);
+                            margin: 0 !important;
+
+                            &> a {
+                                display: block;
+                                padding: s(1) s(2);
+                                color: $dark;
+
+                                &:hover, &:focus, &:active {
+                                    color: $orange;
+                                }
+                            }
+
+                            &.site-header__navigation__separator {
+                                opacity: .8; // 80% Opacity, damit die Farbe wie #ccc wirkt
+
+                                hr::before {
+                                    background-color: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &__darkener {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(#000, .8);
+            display: none;
+            z-index: 99;
+        }
+    }
+}
