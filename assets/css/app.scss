@@ -384,13 +384,15 @@ ul {
     }
 
     a {
+        transition: color .2s ease-in-out;
         @include link {
             color: $text;
             cursor: pointer;
         }
 
         @include hover {
-            color: $tertiary;
+            // color: $tertiary;
+            color: $primary;
         }
     }
 
@@ -418,6 +420,10 @@ ul {
         &> * {
             border: none !important;
         }
+    }
+
+    &__ellipsis {
+        cursor: default;
     }
 }
 

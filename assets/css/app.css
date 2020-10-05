@@ -4389,12 +4389,16 @@ ul {
 .pagination > *:not(:last-child) > * {
   border-right: 1px solid #ccc;
 }
+.pagination a {
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
 .pagination a, .pagination a:link, .pagination a:visited {
   color: #2d3436;
   cursor: pointer;
 }
 .pagination a:hover, .pagination a:active, .pagination a:focus {
-  color: #652480;
+  color: #ff8700;
 }
 .pagination__prev, .pagination__next {
   font-size: 24px;
@@ -4415,6 +4419,9 @@ ul {
 }
 .pagination__current > * {
   border: none !important;
+}
+.pagination__ellipsis {
+  cursor: default;
 }
 
 .site-header {
