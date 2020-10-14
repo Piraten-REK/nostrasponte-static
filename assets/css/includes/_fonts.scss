@@ -8,7 +8,7 @@ $formats: (
     'woff2': 'woff2'
 );
 
-$fontsDir: '/assets/fonts/';
+$fontsDir: '../fonts/';
 
 @function -srcString($fontName, $style, $weight) {
     $name: $fontName;

@@ -3,6 +3,6 @@ body.index-php {
     @extend .error404;
 
     .error-content {
-        background-image: url('/assets/img/501.svg');
+        background-image: url('../img/501.svg');
     }
 }

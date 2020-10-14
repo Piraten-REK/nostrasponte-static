@@ -20,6 +20,10 @@
 
     a:not(.site-footer__license__link) {
         color: #fff;
+
+        @include hover {
+            color: $primary;
+        }
     }
 
     & &__social {

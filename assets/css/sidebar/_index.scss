@@ -11,6 +11,14 @@
         grid-gap: s(4);
     }
 
+    section:not(:last-child) {
+        margin: 0 0 s(7);
+
+        @include m(2) {
+            margin: 0 0 s(8);
+        }
+    }
+
     .section-title {
         @include m(2) {
             font-size: s(3.5);

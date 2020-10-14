@@ -20,7 +20,7 @@ import scrollBehaviorPolyfill from './scroll-behavior-polyfill.js'
 
 if (!('scroll-behavior' in document.documentElement.style)) scrollBehaviorPolyfill()
 
-markExternalLinks()
+// markExternalLinks()
 markMailLinks()
 
 window.addEventListener('scroll', toggleBack2TopButton)

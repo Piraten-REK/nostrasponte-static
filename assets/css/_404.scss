@@ -2,7 +2,7 @@
 
 body.error404 {
     .error-content {
-        background: url('/assets/img/404.svg') center center / calc(100% - 10vw) auto no-repeat;
+        background: url('../img/404.svg') center center / calc(100% - 10vw) auto no-repeat;
 
         h1.error-content__title {
             font-size: s(4);
@@ -18,5 +18,9 @@ body.error404 {
             }
         }
 
+    }
+
+    .main-wrapper {
+        padding-top: 0 !important;
     }
 }
