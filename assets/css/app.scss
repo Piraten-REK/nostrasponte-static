@@ -392,6 +392,12 @@ ul {
         border: 1px solid $gray;
         outline: none;
         border-radius: s(.5) 0 0 s(.5);
+
+        @include hover {
+            &+ button {
+                background: $secondary;
+            }
+        }
     }
 
     button {
@@ -399,7 +405,7 @@ ul {
 
         width: s(6);
         height: s(4);
-        background: $orange;
+        background: $primary;
         border: none;
         outline: none;
         line-height: s(4);
@@ -411,6 +417,10 @@ ul {
 
         &::before {
             @extend .icon-search;
+        }
+
+        @include hover {
+            background: $secondary;
         }
     }
 }
