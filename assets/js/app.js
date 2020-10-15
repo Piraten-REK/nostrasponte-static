@@ -46,8 +46,12 @@ document.querySelectorAll('.em-calendar').forEach(cal => {
 navToggle()
 
 document.querySelector('#back-to-top').addEventListener('click', function () {
-  const focusTo = Array.from(document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))[0]
-  focusTo.focus()
+  const focusTo = Array.from(document.querySelectorAll('button, :not(link)[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))[0]
   window.scrollTo({ top: 0, behavior: 'smooth' })
+  function setFocus () {
+    if (window.scrollY === 0) focusTo.focus()
+    else window.requestAnimationFrame(setFocus)
+  }
+  window.requestAnimationFrame(setFocus)
   this.style.animation = 'none'
 })
