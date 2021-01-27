@@ -76,6 +76,7 @@ const className = (...add) => add.reduce((prev, cur) => prev + (cur.slice(0, 2) 
  * @param {string} link link to be copied
  * @param {string} head text of heading
  * @param {string} btnTitle title text of button
+ * @param {string} closeTitle title text of close button
  * @param {HTMLElement} it Refrence to it
  * @yield {HTMLDivElement|HTMLInputElement} Container element and input element
  * @private
@@ -84,6 +85,7 @@ const className = (...add) => add.reduce((prev, cur) => prev + (cur.slice(0, 2) 
 function * createClipboardElement (link, head, btnTitle, closeTitle, it) {
   const container = document.createElement('div')
   container.classList.add(className('container'), 'px-2', 'py-3', 'px-md-3')
+  container.setAttribute('role', 'command')
 
   const heading = document.createElement('h3')
   heading.innerText = head
@@ -133,6 +135,7 @@ function * createClipboardElement (link, head, btnTitle, closeTitle, it) {
 function createClipboardDarkener (el) {
   const darkener = document.createElement('div')
   darkener.classList.add('site-sidebar__social__link--link__darkener')
+  darkener.setAttribute('role', 'widget')
   darkener.addEventListener('click', () => removeClipboard(el))
   return darkener
 }

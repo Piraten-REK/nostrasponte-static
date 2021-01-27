@@ -182,5 +182,6 @@
         left: 0;
         z-index: 998;
         background: rgba(0, 0, 0, .8);
+        backdrop-filter: saturate(1.3) blur(#{s(1)});
     }
 }

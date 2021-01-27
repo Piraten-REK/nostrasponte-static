@@ -11,10 +11,12 @@
 
 'use strict'
 
+// eslint-disable-next-line no-unused-vars
 import { markExternalLinks, markMailLinks } from './links.js'
 import { toggleBack2TopButton, sliderNav } from './scroll.js'
 import share from './share.js'
 import { navToggle } from './nav.js'
+import ical from './ical-widget/index.js'
 
 import scrollBehaviorPolyfill from './scroll-behavior-polyfill.js'
 
@@ -55,3 +57,5 @@ document.querySelector('#back-to-top').addEventListener('click', function () {
   window.requestAnimationFrame(setFocus)
   this.style.animation = 'none'
 })
+
+ical()

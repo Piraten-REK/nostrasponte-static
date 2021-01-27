@@ -1,0 +1,111 @@
+@use '../includes/conf' as *;
+
+$class: '.nostrasponte-calendar-widget';
+
+#{$class} {
+
+  &__month {
+    $spacing: 4px;
+    width: calc(100% + #{$spacing * 2});
+    margin: 0 #{$spacing * -1};
+    border-collapse: separate;
+    border-spacing: $spacing;
+
+    th, td {
+      cursor: default;
+    }
+
+    thead {
+      tr:nth-child(1) {
+        #{$class}__prev,
+        #{$class}__next {
+          @extend .feather;
+          font-size: s(2.5);
+          color: $gray;
+          text-align: center;
+          cursor: pointer;
+        }
+        #{$class}__prev {
+          @include hover {
+            animation: em-prev 2s linear 0s infinite;
+          }
+        }
+        #{$class}__next {
+          @include hover {
+            animation: em-next 2s linear 0s infinite;
+          }
+        }
+
+        th {
+          font-weight: 700;
+          font-size: s(2.5);
+        }
+      }
+
+      tr:nth-child(2) th {
+        background: $primary;
+        color: #fff;
+        font-weight: 400;
+        width: calc(100% / 7);
+        height: s(2.75);
+        line-height: s(2.75);
+        text-align: center;
+
+        &:first-child {
+          border-top-left-radius: s(.5);
+        }
+
+        &:last-child {
+          border-top-right-radius: s(.5);
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        & {
+          #{$class}__day {
+            width: calc(100% / 7);
+            height: s(2.75);
+            line-height: s(2.75);
+            text-align: center;
+            background: #fff;
+            color: $darkGray;
+
+            &--before, &--after {
+              opacity: .5;
+            }
+            &--eventful {
+              button {
+                width: 100%;
+                height: 100%;
+                display: block;
+                background: none;
+                border: none;
+                outline: none;
+                font: normal normal normal 1em/1.3 $fontFamily;
+                color: $primary;
+                cursor: pointer;
+              }
+            }
+
+            &__label {
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+
+        &:last-child #{$class}__day {
+          &:first-child {
+            border-bottom-left-radius: s(.5);
+          }
+          &:last-child {
+            border-bottom-right-radius: s(.5);
+          }
+        }
+      }
+    }
+  }
+}
